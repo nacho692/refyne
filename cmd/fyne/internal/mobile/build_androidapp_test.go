@@ -269,6 +269,8 @@ func TestManifestWithShareMimeTypes(t *testing.T) {
 		`<data android:scheme="content" />`,
 		`<data android:mimeType="video/*" />`,
 		`<data android:mimeType="audio/*" />`,
+		`<data android:scheme="http" />`,
+		`<data android:scheme="https" />`,
 	} {
 		if !strings.Contains(got, want) {
 			t.Errorf("manifest missing %q:\n%s", want, got)
