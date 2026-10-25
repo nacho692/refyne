@@ -16,6 +16,7 @@ ID = "io.fyne.fyne"
 
 [Android]
 ShareMimeTypes = ["video/*", "audio/*", "image/*"]
+ShareSchemes = ["content", "https"]
 
 [Android.BackgroundService]
 Type = "connectedDevice"
@@ -28,6 +29,7 @@ func TestLoadAndroidMetadata(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, data.Android)
 	assert.Equal(t, []string{"video/*", "audio/*", "image/*"}, data.Android.ShareMimeTypes)
+	assert.Equal(t, []string{"content", "https"}, data.Android.ShareSchemes)
 	assert.NotNil(t, data.Android.BackgroundService)
 	assert.Equal(t, AndroidBackgroundServiceConnectedDevice, data.Android.BackgroundService.Type)
 	assert.True(t, data.Android.BackgroundService.KeepCPUAwake)

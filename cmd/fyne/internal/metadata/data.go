@@ -58,6 +58,11 @@ type Android struct {
 	// Values are Android MIME patterns such as "video/*" or "image/png".
 	ShareMimeTypes []string `toml:",omitempty"`
 
+	// ShareSchemes lists the URI schemes the ACTION_VIEW filter accepts, such as
+	// "content", "http" or "https". It defaults to "content" only and has no effect
+	// without ShareMimeTypes.
+	ShareSchemes []string `toml:",omitempty"`
+
 	// BackgroundService configures the foreground service started by
 	// driver/mobile.BackgroundSession. Android requires every foreground service
 	// to declare the category of work it performs.

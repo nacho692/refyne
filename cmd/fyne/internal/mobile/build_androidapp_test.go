@@ -259,6 +259,7 @@ func TestManifestWithShareMimeTypes(t *testing.T) {
 		Name:           "Example",
 		LibName:        "example",
 		ShareMimeTypes: []string{"video/*", "audio/*"},
+		ShareSchemes:   []string{"content", "http", "https"},
 	}
 	got := renderManifest(t, base)
 
@@ -269,6 +270,7 @@ func TestManifestWithShareMimeTypes(t *testing.T) {
 		`<data android:scheme="content" />`,
 		`<data android:mimeType="video/*" />`,
 		`<data android:mimeType="audio/*" />`,
+		`<data android:scheme="content" />`,
 		`<data android:scheme="http" />`,
 		`<data android:scheme="https" />`,
 	} {
