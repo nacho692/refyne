@@ -42,6 +42,9 @@ type manifestTmplData struct {
 	// re-uses the running instance instead of creating a second one.
 	ShareMimeTypes []string
 
+	// ShareSchemes are the URI schemes of the ACTION_VIEW filter.
+	ShareSchemes []string
+
 	// BackgroundService declares FyneForegroundService and the permissions for
 	// its configured use case. MulticastDiscovery and
 	// BatteryOptimizationExemption each add the single permission they name. An
@@ -168,8 +171,12 @@ func goAndroidBuild(pkg *packages.Package, bundleID string, androidArchs []strin
 	}
 	if androidMeta != nil {
 		tmplData.ShareMimeTypes = androidMeta.ShareMimeTypes
+		tmplData.ShareSchemes = androidMeta.ShareSchemes
 		tmplData.MulticastDiscovery = androidMeta.MulticastDiscovery
 		tmplData.BatteryOptimizationExemption = androidMeta.BatteryOptimizationExemption
+	}
+	if len(tmplData.ShareSchemes) == 0 {
+		tmplData.ShareSchemes = []string{"content"}
 	}
 
 	manifestData, libName, err := loadOrCreateAndroidManifest(dir, tmplData)
